@@ -12,7 +12,7 @@
 			(function(l) {
 				if(/github\.io/.test(l.hostname)){
 					if (l.search) {
-						var route = /[?&]p=[^&]+/.exec(l.search)[1];
+						var route = /[?&]p=([^&]+)/.exec(l.search)[1];
 						if ( /^(\/[^&?#\/]+)+$/.test(route)) {
 							window.history.replaceState(null, null, l.pathname.replace(/\/$/, '') + route);
 						}
