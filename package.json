@@ -1,10 +1,15 @@
 {
-  "name": "forex_client",
+  "name": "beer-info",
   "version": "1.0.0",
-  "description": "forex trading web client",
+  "description": "beer search engine",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build" : "NODE_ENV=production webpack",
+    "build-dev" : "webpack",
+    "devserver" : "webpack-dev-server",
+    "test": "./scripts/test",
+    "deploy" : "./scripts/deploy",
+    "push" : "./scripts/push"
   },
   "contributors": [
     "js-coder@mail.ru"

@@ -1,0 +1,5 @@
+#!/bin/bash
+test -z "$1" && echo "commit message required! usage: npm run deploy -- \"commit message\"" && exit 1
+git -C build/production/client add --all 
+git -C build/production/client commit -m "$1"
+git -C build/production/client push
