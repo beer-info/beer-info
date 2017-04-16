@@ -10,12 +10,12 @@ body > div:first-child {
   font-size: 48px;
   text-align: center;
   font-family: Comic Sans;
-  color: white;
+  color: rgba(255, 255, 255, 0.9);
   text-shadow: 0 2px chocolate, 0 1px 2px darkorange, 0 8px 8px darkgoldenrod;
   background: #ffffff;
-  background: -moz-linear-gradient(top,  #ffffff 5%, #ffffff 5%, #efcf00 10%, #efdf73 54%, #f1da36 100%) no-repeat;
-  background: -webkit-linear-gradient(top,  #ffffff 5%,#ffffff 5%,#efcf00 10%,#efdf73 54%,#f1da36 100%) no-repeat;
-  background: linear-gradient(to bottom,  #ffffff 5%,#ffffff 5%,#efcf00 10%,#efdf73 54%,#f1da36 100%) no-repeat;
+  background: -moz-linear-gradient(top, #f5f1e3 0%, #ffffff 5%, #ffffff 10%, #efb000 12%, #ffdc3f 54%, #fdbc17 100%) no-repeat;
+  background: -webkit-linear-gradient(top, #f5f1e3 0%, #ffffff 5%, #ffffff 10%, #efb000 12%, #ffdc3f 54%, #fdbc17 100%) no-repeat;
+  background: linear-gradient(to bottom, #f5f1e3 0%, #ffffff 5%, #ffffff 10%, #efb000 12%, #ffdc3f 54%, #fdbc17 100%) no-repeat;
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f1da36',GradientType=0 );
   display: flex;
   justify-content:center;

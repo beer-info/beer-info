@@ -105,8 +105,8 @@ const plugins = [
                 )
                 // compilation.assets['index.html'] = { source: () => index, size: () => index.length };
                 fs.writeFileSync(path.join(buildPath, `/index.html`), index);
-                fs.createReadStream( path.join(sourcePath, '/client/assets/favicon.bmp') )
-                .pipe(fs.createWriteStream(path.join(buildPath, `/favicon.bmp`)))
+                fs.createReadStream( path.join(sourcePath, '/client/assets/favicon.png') )
+                .pipe(fs.createWriteStream(path.join(buildPath, `/favicon.png`)))
 
                 callback()
             })
@@ -145,6 +145,8 @@ if (production) {
             apply(compiler){
                 compiler.plugin('emit', (compilation, callback) => {
 
+                    console.log(`clean previous build at \u001b[33m${buildPath}\u001b[0m :`);
+
                     let excluded = [
                         '.git',
                         '.gitignore',
@@ -155,8 +157,13 @@ if (production) {
                     fs.readdirSync(buildPath)
                     .filter(name => !(name in excluded))
                     .forEach(name => fs.stat(
-                        name,
-                        (err, stat) => (!err && stat && stat.isFile() && fs.unlinkSync(name))
+                        path.join(buildPath, `/${name}`),
+                        (err, stat) => {
+                            if(!err && stat && stat.isFile()) {
+                                console.log(`\t\u001b[31m${name}\u001b[0m`);
+                                fs.unlinkSync(path.join(buildPath, `/${name}`))
+                            }
+                        }
                     ))
 
                     callback()
