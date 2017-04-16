@@ -20,11 +20,9 @@ const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk)));
 ReactDOM.render(
   <Provider store={store}>
     <Router history={browserHistory}>
-      <Route path="/beer">
-        <Route path="/" component={SearchPage} />
-        <Route path="/style/:id" component={StylePage} />
-        <Route path="*" component={NotFoundPage} />
-      </Route>
+      <Route path="/" component={SearchPage} />
+      <Route path="/style/:id" component={StylePage} />
+      <Route path="*" component={NotFoundPage} />
     </Router>
   </Provider>,
   document.getElementById('approot')

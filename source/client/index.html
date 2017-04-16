@@ -8,6 +8,18 @@
 		<link rel="shortcut icon" href="favicon.png" type="image/x-icon">
 		<!--# production <link rel="stylesheet" href="/app.css"> production #-->
 		<style> #approot { height: 100%; } </style>
+		<script type="text/javascript">
+			(function(l) {
+				if(/github\.io/.test(l.hostname)){
+					if (l.search) {
+						var route = /[?&]p=[^&]+/.exec(l.search)[1];
+						if ( /^(\/[^&?#\/]+)+$/.test(route)) {
+							window.history.replaceState(null, null, l.pathname.replace(/\/$/, '') + route);
+						}
+					}
+				}
+			}(window.location))
+		</script>
 	</head>
 	<body style="overflow: hidden;">
 		<div id="approot"></div>

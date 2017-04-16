@@ -105,8 +105,17 @@ const plugins = [
                 )
                 // compilation.assets['index.html'] = { source: () => index, size: () => index.length };
                 fs.writeFileSync(path.join(buildPath, `/index.html`), index);
-                fs.createReadStream( path.join(sourcePath, '/client/assets/favicon.png') )
-                .pipe(fs.createWriteStream(path.join(buildPath, `/favicon.png`)))
+                fs.createReadStream(
+                    path.join(sourcePath, '/client/assets/favicon.png')
+                ).pipe(fs.createWriteStream(
+                    path.join(buildPath, `/favicon.png`))
+                )
+
+                fs.createReadStream(
+                    path.join(sourcePath, '/client/404.html')
+                ).pipe(fs.createWriteStream(
+                    path.join(buildPath, `/404.html`))
+                )
 
                 callback()
             })
