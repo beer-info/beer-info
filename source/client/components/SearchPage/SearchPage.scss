@@ -1,0 +1,14 @@
+.page {
+	margin: 0 auto;
+	padding-top: 40px;
+	.page-body {
+		margin-top: 40px;
+		display: flex;
+		> :first-child {
+			flex-grow: 1;
+		}
+		> :last-child {
+			flex-grow: 0;
+		}
+	}
+}

@@ -1,0 +1,31 @@
+.search {
+	display: flex;
+	font-size: 14px;
+	margin: 0 auto;
+	max-width: 1000px;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.4);
+    > * {
+    	vertical-align: middle;
+		padding: 10px;
+		border: none;
+		line-height: 19px;
+    }
+	.query {
+		color: black;
+		flex-grow: 1;
+	}
+	.submit {
+		color: white;
+		background: #efc854;
+		flex-grow: 0;
+		&:hover {
+			background: #ffd864;
+		}
+	}
+	.categories {
+		margin-left: 10px;
+		flex-grow: 0;
+		cursor: pointer;
+	}
+}

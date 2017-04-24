@@ -2,7 +2,7 @@
 
 import 'react-hot-loader'
 import React, { Component } from 'react'
-// import { Router, Route, IndexRoute, Redirect, browserHistory } from 'react-router'
+import { Link } from 'react-router'
 
 import { connect } from 'react-redux'
 
@@ -10,7 +10,7 @@ import C from 'classnames'
 
 import css from './StylePage.scss'
 
-import UnderConstruction from '../../components/UnderConstruction'
+//import UnderConstruction from '../../components/UnderConstruction'
 
 import { ACTIONS } from '../../constants'
 // import SearchForm from './containers/search-form'
@@ -33,7 +33,7 @@ class StylePage extends Component {
   }
 
   render() {
-    return <UnderConstruction />
+    return <div><Link to="/">home</Link></div>;//<UnderConstruction />
   }
 }
 

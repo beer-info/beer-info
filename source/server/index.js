@@ -1,14 +1,14 @@
 'use strict';
 
-/**
- * Writed for node.js v0.8.6, running on old VPS
- * API URL: http://terezanov.ru:8080/api/
- */
-
+var https = require('https');
 var http = require('http');
-var url = require('url')
+var fs = require('fs');
+var url = require('url');
 
-http.createServer(function(req, res) {
+https.createServer({
+	key: fs.readFileSync('./beer-info.pem'),
+	cert: fs.readFileSync('./beer-info.crt')
+}, function(req, res) {
 
 	var isApi = /^\/api\//;
 	var apiUrl = url.parse(req.url);
@@ -18,10 +18,10 @@ http.createServer(function(req, res) {
 			'http://api.brewerydb.com/v2' + apiUrl.pathname.split('/api')[1] +
 			'?key=f14f49a8edc2d2fae16ffacb3024bc1b&' + apiUrl.query,
 			function(response){
-				response.on('data', function(data){
+				if(!res.finished){
 					res.setHeader('Access-Control-Allow-Credentials', 'true');
 					res.setHeader('Access-Control-Allow-Origin', '*');
-					res.end(data.toString());
+					response.pipe(res);
 				})
 			}
 		);
