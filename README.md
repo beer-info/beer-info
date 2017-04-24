@@ -38,11 +38,16 @@ npm run push -- "commit message"
 ## tests
 Tests not implementing yet :(
 ## view result
+
 Production version published here:
+
 https://beer-info.github.io
+
 By default, local devserver listen on 0.0.0.0:8080, 
 so you can use http://localhost:8080 or http://you-vm-domain.com - no matter.
+
 Also, if you want to start devserver in production mode, port will be 8088, but I don`t recomend this, because bundle configured for git pages 
+
 Normally it should works fine and you can do it using this command:
 ```bash
 NODE_ENV=production webpack-dev-server
