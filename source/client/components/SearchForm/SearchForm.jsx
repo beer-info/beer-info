@@ -12,8 +12,14 @@ class SearchForm extends Component {
 		super(props)
 	}
 
-	clearInput(){
-		this.searchInput.value = ''
+	setQuery(query) {
+		this.searchInput.value = query || ''
+	}
+
+	setSelect(id) {
+		console.log('setSelect:', id)
+		this.select.selectedIndex = id || 1
+		window.beerstyles = this.select
 	}
 
 	onSubmit(event) {
@@ -55,6 +61,7 @@ class SearchForm extends Component {
 					<select
 						disabled={!!this.props.disabled}
 						className={css.select}
+						ref={select => this.select = select}
 						onChange={this.onSelect.bind(this)} >
 						{
 							items.map((item, key) => (

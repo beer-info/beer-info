@@ -12,6 +12,12 @@ import Bookmarks from '../Bookmarks'
 import css from './SearchPage.scss'
 import actions from '../../actions/SearchPage'
 
+const restoreLastQuery = () => JSON.parse(localStorage.getItem('lastQuery')) || {
+	byQuery: false,
+	style: 1,
+	page: 1
+}
+
 @connect(state => ({state}), dispatch => actions(dispatch))
 class SearchPage extends Component {
 
@@ -20,15 +26,39 @@ class SearchPage extends Component {
 	}
 
 	componentWillMount() {
-		let { requestCategories, requestStyles, requestBeers, requestBookmarks } = this.props
+		let { requestCategories, requestStyles, requestBeers, requestBookmarks, searchQuery } = this.props
+		let lastQuery = restoreLastQuery()
 		Promise.all([
-            requestCategories(), requestStyles(), requestBeers(), requestBookmarks()
+            requestCategories(),
+            requestStyles(),
+            requestBookmarks(),
+            lastQuery.byQuery
+            ? searchQuery(lastQuery.query, lastQuery.page)
+            : requestBeers(lastQuery.style, lastQuery.page)
         ]).catch(console.error)
+        this.justMounted = true
+	}
+
+	componentWillReceiveProps(nextProps) {
+		if(nextProps.state.styles.data.length && this.justMounted){
+			this.initForm = true
+			this.justMounted = false
+		}
+	}
+
+	componentDidUpdate(prevProps, prevState) {
+		if(this.initForm) {
+			let lastQuery = restoreLastQuery()
+			lastQuery.byQuery
+			? this.searchForm.setQuery(lastQuery.query)
+			: this.searchForm.setSelect(lastQuery.style)
+			this.initForm = false
+		}
 	}
 
 	onStyleSelect(style) {
 		this.props.requestBeers(style)
-		this.searchForm.clearInput()
+		this.searchForm.setQuery('')
 	}
 
 	onSearchQuery(query, page) {

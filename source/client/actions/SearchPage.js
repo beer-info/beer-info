@@ -18,6 +18,10 @@ function forgetBookmark(id) {
 	return true;
 }
 
+function rememberLastQuery(query) {
+	localStorage.setItem('lastQuery', JSON.stringify(query))
+}
+
 export default dispatch => {
 	const actions = {
 
@@ -34,6 +38,7 @@ export default dispatch => {
 						fetch('https://terezanov.ru:8888/api/categories')
 						.then(r => r.json())
 						.then(json => {
+							console.log(json)
 							json.data = json.data.filter(category => category.name && category.name !== '""' )
 							dispatch({ type: 'CATEGORIES_RECEIVED', data: { ...json } })
 							resolve(json)
@@ -84,6 +89,7 @@ export default dispatch => {
 								byStyle: style
 							}
 						})
+						rememberLastQuery({ byQuery: false, style, page })
 						resolve(json)
 					})
 					.catch(reject)
@@ -129,6 +135,7 @@ export default dispatch => {
 								byStyle: false
 							}
 						})
+						rememberLastQuery({ byQuery: true, query, page })
 						resolve(json)
 					})
 					.catch(reject)
