@@ -17,9 +17,14 @@ class SearchForm extends Component {
 	}
 
 	setSelect(id) {
-		console.log('setSelect:', id)
-		this.select.selectedIndex = id || 1
-		window.beerstyles = this.select
+		this.select.selectedIndex = [
+			// 'я обычно так не делаю, но так присвоение выглядит прикольно,',
+			// 'когда надо метод массива на чем то типа HTMLCollection вызвать :)',
+			// 'и эти строки можно типа как каменты заюзать :)',
+			// 'разумеется в боевом проекте я так гнать не собираюсь :)',
+			// 'И по большому счету надо юзать Array.prototype, а не []',
+			// 'А вообще - мне просто стало скучно и я решил пострадать фигнёй :)'
+		].filter.call(this.select.options, option => option.value === id).pop().index
 	}
 
 	onSubmit(event) {
