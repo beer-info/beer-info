@@ -12,7 +12,7 @@ import thunk from 'redux-thunk'
 import reducer from './reducers'
 
 import SearchPage from './components/SearchPage'
-import StylePage from './components/StylePage'
+import BeerPage from './components/BeerPage'
 import NotFoundPage from './components/NotFoundPage'
 
 import css from './app.scss'
@@ -30,7 +30,7 @@ ReactDOM.render(
 	<Provider store={store}>
 		<Router history={browserHistory}>
 			<Route path="/" component={SearchPage} />
-			<Route path="/style/:id" component={StylePage} />
+			<Route path="/beer/:id" component={BeerPage} />
 			<Route path="*" component={NotFoundPage} />
 		</Router>
 	</Provider>,

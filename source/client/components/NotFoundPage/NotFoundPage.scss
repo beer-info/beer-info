@@ -1,0 +1,13 @@
+@keyframes spinner {
+	0%  {transform: rotate(0deg)}
+	100%{transform: rotate(359deg)}
+}
+
+.page {
+	width: 100%;
+	height: 100%;
+	background: url(../../assets/404.jpg) center no-repeat, white;
+	text-align: center;
+	font-size: 44px;
+	padding-top: 44px;
+}

@@ -12,8 +12,54 @@
 		width: 400px;
 	}
 
+	.name {
+		padding: 40px 0 0;
+		text-align: center;
+		font-size: 54px;
+		color: #fff5e2;
+		text-shadow: 0 1px orange, 0 6px 12px black;
+	}
+
+	.style {
+		text-align: center;
+		font-size: 42px;
+		color: #ffe3ad;
+		text-shadow: 0 1px orange, 0 6px 12px black;
+	}
+
+	.label {
+		float: left;
+		width: 450px;
+		margin-right: 10px;
+		margin-bottom: 10px;
+	}
+
+	.link {
+		font-size: 18px;
+		display: block;
+		color: #864b00;
+		margin-top: 10px;
+		text-decoration: underline;
+		text-shadow: 0 1px orange, 0 0px 4px orange;
+	}
+
+	.beer-info {
+		background: rgba(255,255,255,0.8);
+		padding: 20px;
+		flex-shrink: 1;
+		h2 {
+			font-size: 22px;
+			font-weight: bold;
+			color: brown;
+			padding: 10px 0;
+		}
+		.description {
+			font-size: 18px;
+		}
+	}
+
 	.page-body {
-		margin-top: 140px;
+		margin-top: 40px;
 		display: flex;
 		> :first-child {
 			flex-grow: 0;
@@ -47,7 +93,9 @@
 
 @media screen and (max-width: 1240px) {
 	.page {
+
 		margin: 0 auto;
+
 		.left-sidebar {
 			flex-shrink: 1;
 			width: auto;

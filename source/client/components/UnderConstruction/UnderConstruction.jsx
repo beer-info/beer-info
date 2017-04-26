@@ -8,11 +8,10 @@ import css from './UnderConstruction.scss'
 export default class UnderConstruction extends Component {
 	render(){
 		return (
-			<div>{
-				"Go to pub and dreenk some beer"
-			}<br/>{
-				"while our site is under construction"
-			}</div>
+			<div>
+				Go to pub and dreenk some beer<br/>
+				while our site is under construction
+			</div>
 		)
 	}
 }

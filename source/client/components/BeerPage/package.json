@@ -1,6 +1,6 @@
 {
-  "name": "overlay",
+  "name": "BeerPage",
   "version": "1.0.0",
-  "main": "overlay.jsx",
+  "main": "BeerPage.jsx",
   "author": "js-coder@mail.ru"
 }

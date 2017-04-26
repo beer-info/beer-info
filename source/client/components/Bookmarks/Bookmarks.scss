@@ -1,16 +1,22 @@
 .bookmarks {
+	position: fixed;
+    right: 0;
+    top: 150px;
 	width: 400px;
 	margin-right: 0px;
+
 	.group {
 		height: 139px;
 		display: flex;
 		padding-top: 5px;
 		background: url(../../assets/bookmarksextent.png);
+
 		&:first-child {
 			height: 244px;
 			padding-top: 110px;
 			background: url(../../assets/bookmarkstop.png);
 		}
+
 		.bookmark {
 			width: 100px;
 			height: 100px;
@@ -23,16 +29,52 @@
 			text-shadow: 0 1px 1px grey, 0 5px 5px black;
 			box-shadow: 0 4px 8px rgba(0,0,0,0.8);
 			border-radius: 25px;
-			> img {
+
+			.icon {
 				height: 48px;
 			}
-			> p {
+
+			.name {
 				max-height: 42px;
 				overflow: hidden;
+				color: white;
+				text-decoration: underline;
 			}
+
 			&:first-child {
 				margin-left: 70px;
 			}
+
+			.remove {
+				display: none;
+			}
+
+			&:hover {
+				background: rgba(236, 169, 41, 0.6);
+				.name {
+					color: wheat;
+				}
+				.remove {
+					display: block;
+					position: absolute;
+					margin-left: 75px;
+					margin-top: -15px;
+					font-size: 24px;
+					cursor: pointer;
+				}
+			}
 		}
+	}
+	.caption {
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: 67px;
+		color: wheat;
+		font-size: 32px;
+		font-weight: bold;
+		text-align: center;
+		text-shadow: 0 1px grey, 0 2px 14px black;
+		margin-left: 70px;
 	}
 }

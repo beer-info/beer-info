@@ -1,11 +1,9 @@
 'use strict';
 
-import { combineReducers } from 'redux';
+import { combineReducers } from 'redux'
 
-import styles from './styles';
-import beers from './beers';
+import categories from './categories'
+import styles from './styles'
+import beers from './beers'
 
-export default combineReducers({
-  styles,
-  beers
-})
+export default combineReducers({ categories, styles, beers })

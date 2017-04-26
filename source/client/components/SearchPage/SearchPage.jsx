@@ -2,86 +2,88 @@
 
 import 'react-hot-loader'
 import React, { Component } from 'react'
-// import { Router, Route, IndexRoute, Redirect, browserHistory } from 'react-router'
-
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 
-import C from 'classnames'
-
-import css from './SearchPage.scss'
-
-import actions from '../../actions/SearchPage'
-
-// import {log, warn, error} from '../../utils/debug'
-
-//import UnderConstruction from '../../components/UnderConstruction'
-
 import SearchForm from '../SearchForm'
 import SearchResults from '../SearchResults';
-// import SearchResultsDetailes from './components/search-result-detailes'
 import Bookmarks from '../Bookmarks'
 
-// import MainLayout from './components/main-layout'
+import css from './SearchPage.scss'
+import actions from '../../actions/SearchPage'
 
 @connect(state => ({state}), dispatch => actions(dispatch))
 class SearchPage extends Component {
 
 	constructor(props) {
 		super(props)
-		this.onStyleSelect = this.onStyleSelect.bind(this)
-		this.onSearchQuery = this.onSearchQuery.bind(this)
-		this.onBookmarkAdd = this.onBookmarkAdd.bind(this)
-		this.onBookmarkDel = this.onBookmarkDel.bind(this)
 	}
 
 	componentWillMount() {
-		let { categories, styles, beers } = this.props.state
-		!categories.fetching && this.props.requestCategories()
-		!styles.fetching && this.props.requestStyles()
-		!beers.fetching && this.props.requestBeers()
+		let { requestCategories, requestStyles, requestBeers, requestBookmarks } = this.props
+		Promise.all([
+            requestCategories(), requestStyles(), requestBeers(), requestBookmarks()
+        ]).catch(console.error)
 	}
 
 	onStyleSelect(style) {
-		console.log('selected style id:', style)
-		this.props.selectStyle(style)
+		this.props.requestBeers(style)
+		this.searchForm.clearInput()
 	}
 
 	onSearchQuery(query, page) {
-		console.log('search query:', {query, page})
 		this.props.searchQuery(query, page || 1)
 	}
 
 	onBookmarkAdd(id) {
-		console.log('add to bookmarks:', {query, page})
 		this.props.addToBookmarks(id)
 	}
 
 	onBookmarkDel(id) {
-		console.log('remove from bookmarks:', {query, page})
 		this.props.removeFromBookmarks(id)
 	}
 
+	onPageSelect(page) {
+		this.props.state.beers.byQuery
+		? this.props.searchQuery(this.props.state.beers.byQuery, page)
+		: this.props.requestBeers(this.props.state.beers.byStyle, page)
+	}
+
 	render() {
-		let styles = this.props.state.styles;
-		let beers = (
-			styles.selected
-				? this.props.state.beers.data.filter(beer => beer.style && beer.style.styleId === styles.selected)
-				: this.props.state.beers.data
-		)
-		console.log('BEERS:', beers);
+		let styles = this.props.state.styles
+		let beers = this.props.state.beers
 		return  (
 			<div className={css.page} >
 				<SearchForm
-					items={styles}
-					onSelect={this.onStyleSelect}
-					onQuery={this.onSearchQuery} />
+					items={styles.data}
+					pages={beers.numberOfPages}
+					currentPage={beers.currentPage}
+					placeholder={'Search you favorite beer here or select beer style from dropbox 🠊'}
+					ref={form => this.searchForm = form}
+					onPageSelect={this.onPageSelect.bind(this)}
+					onSelect={this.onStyleSelect.bind(this)}
+					onQuery={this.onSearchQuery.bind(this)} />
 				<div className={css.pageBody} >
+					<div className={css.leftSidebar} />
 					<SearchResults
-						items={beers}
-						onBookmark={this.onBookmarkAdd} />
-					<Bookmarks onBookmarkDel={this.onBookmarkDel} />
+						items={beers.data}
+						onBookmark={this.onBookmarkAdd.bind(this)} />
+					<div className={css.rightSidebar} >
+						<Bookmarks
+							caption='Beer collection'
+							onBookmarkDel={this.onBookmarkDel.bind(this)}
+							items={beers.bookmarked} />
+					</div>
 				</div>
+				{
+					beers.fetching
+					? (
+						<div className={css.preloader} >
+							<div className={css.spinner} />
+						</div>
+					)
+					: null
+				}
 			</div>
 		)
 	}
