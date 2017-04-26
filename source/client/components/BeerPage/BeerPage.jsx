@@ -23,7 +23,6 @@ class BeerPage extends Component {
 
 	render() {
 		let beer = this.props.state.beer
-		console.log('render beer:', beer)
 
 		// только не кастрируйте меня за это пожалуйста - если оно Вас раздражает,
 		// то не вопрос, не буду такого городить, но как по мне, то оно вполне читабельно :)
@@ -38,6 +37,10 @@ class BeerPage extends Component {
 						: beer.labels.icon
 							? beer.labels.icon
 							: '/assets/beer_def_label.png'
+		if(beer && beer.status === 'failure') {
+			beer = null
+			window.location.pathname = '/404'
+		}
 		return beer
 			? (
 	        	<div className={css.page}>

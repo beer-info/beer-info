@@ -41,7 +41,11 @@ export default dispatch => {
 						fetch(`https://terezanov.ru:8888/api/beer/${id}`)
 						.then(r => r.json())
 						.then(json => {
-							dispatch({ type: 'BEERS_VIEW_BEER', data: json.data })
+							console.log(json)
+							dispatch({
+								type: 'BEERS_VIEW_BEER',
+								data: json.status === 'success' ? json.data : json
+							})
 							resolve(json)
 						})
 						.catch(reject)

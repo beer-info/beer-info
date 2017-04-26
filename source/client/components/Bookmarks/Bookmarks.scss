@@ -1,9 +1,20 @@
 .bookmarks {
-	position: fixed;
-    right: 0;
-    top: 150px;
 	width: 400px;
-	margin-right: 0px;
+	margin-top: 20px;
+
+	.caption {
+		position: absolute;
+		color: wheat;
+		font-size: 32px;
+		font-weight: bold;
+		text-align: center;
+		text-shadow: 0 1px grey, 0 2px 14px black;
+		margin: 65px 0 0 120px;
+	}
+
+	.items {
+		display: block;
+	}
 
 	.group {
 		height: 139px;
@@ -64,17 +75,5 @@
 				}
 			}
 		}
-	}
-	.caption {
-		position: absolute;
-		left: 0;
-		right: 0;
-		top: 67px;
-		color: wheat;
-		font-size: 32px;
-		font-weight: bold;
-		text-align: center;
-		text-shadow: 0 1px grey, 0 2px 14px black;
-		margin-left: 70px;
 	}
 }

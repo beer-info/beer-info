@@ -67,17 +67,19 @@ class Bookmarks extends Component {
             </div>
 
     	));
+    	console.log(bookmarks)
 		return (
 			<div className={css.bookmarks} >
-				{
-					(bookmarks.length ? bookmarks : [<div key={0} className={css.group} />]).concat(
-				    	<div key={bookmarks.length || 1} className={css.caption} >
-							{
-								this.props.caption
-							}
-						</div>
-			        )
-				}
+				<div key={bookmarks.length || 1} className={css.caption} >
+					{
+						this.props.caption
+					}
+				</div>
+				<div className="css.items">
+					{
+						(bookmarks.length ? bookmarks : [<div key={0} className={css.group} />])
+					}
+				</div>
 			</div>
 		);
 	}

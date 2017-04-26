@@ -21,7 +21,6 @@ const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk)));
 
 window.addEventListener('scroll', (event) => {
 	let {clientHeight, scrollHeight, scrollTop} = document.body
-	console.log({event, clientHeight, scrollHeight, scrollTop})
 	document.body.style.backgroundPositionY =
 		-(1888 - clientHeight) / (scrollHeight - clientHeight) * scrollTop + 'px';
 })
