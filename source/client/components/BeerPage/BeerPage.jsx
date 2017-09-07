@@ -26,17 +26,14 @@ class BeerPage extends Component {
 
 		// только не кастрируйте меня за это пожалуйста - если оно Вас раздражает,
 		// то не вопрос, не буду такого городить, но как по мне, то оно вполне читабельно :)
-		let label = !beer
-			? '/assets/beer_def_label.png'
-			: !beer.labels
-				? '/assets/beer_def_label.png'
-				: beer.labels.large
-					? beer.labels.large
-					: beer.labels.medium
-						? beer.labels.medium
-						: beer.labels.icon
-							? beer.labels.icon
-							: '/assets/beer_def_label.png'
+		let label = 
+			!beer ? '/assets/beer_def_label.png'
+			: !beer.labels ? '/assets/beer_def_label.png'
+			: beer.labels.large ? beer.labels.large
+			: beer.labels.medium ? beer.labels.medium
+			: beer.labels.icon ? beer.labels.icon
+			: '/assets/beer_def_label.png'
+		
 		if(beer && beer.status === 'failure') {
 			beer = null
 			window.location.pathname = '/404'
