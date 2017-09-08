@@ -14,7 +14,6 @@ https.createServer({
 	var apiUrl = url.parse(req.url);
 	if(isApi.test(apiUrl.pathname)){
 		console.log(apiUrl.pathname , 'from', req.socket.remoteAddress);
-		// var key = 'f14f49a8edc2d2fae16ffacb3024bc1b'; // yukon
 		// var key = '01379011bfd893a3f6a7b3e5b6873ae2'; // beer-info
 		var key = '2b8202e027e2b7a7b93a8f767cb233fa'; // infobeer
 
