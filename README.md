@@ -36,7 +36,7 @@ npm run push -- "commit message"
 # enter github credentials if needed
 ```
 ## tests
-Tests not implementing yet :(
+Tests not implemented yet :(
 ## view result
 
 Production version published here:
